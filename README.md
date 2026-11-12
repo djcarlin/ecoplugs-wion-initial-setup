@@ -4,6 +4,10 @@ Set up legacy **ECO Plugs** and **WiOn** Wi-Fi timers and outlets with the WiOn 
 
 Use WiOn Setup for the initial Wi-Fi connection. After the device has joined, [homebridge-ecoplugs](https://github.com/homebridge-plugins/homebridge-ecoplugs#tested-devices) can discover and control supported devices on the same subnet.
 
+## Why this exists
+
+The original ECO Plugs iOS app could no longer onboard my WiOn timer after a factory reset. I built WiOn Setup to get the timer back onto my home Wi-Fi using a Mac, and added a Python CLI so people can do the same on Windows and Linux.
+
 ## Setup
 
 1. Put the timer in setup mode using the instructions for your model.
