@@ -18,7 +18,9 @@ To rename an existing timer, select it from the list on your home Wi-Fi, enter a
 
 ## Compatibility
 
-The app supports legacy ECO timers that use the FtNetManager protocol and provide a setup access point on the 192.168.4.0/24 or 192.168.5.0/24 subnet. Wi-Fi provisioning and name reads were verified on one legacy timer running firmware 1.7.1. Other models and newer KAB devices are unverified. The Homebridge plugin has its own compatibility list.
+WiOn Setup targets legacy ECO Plugs and WiOn devices that use the FtNetManager protocol. Wi-Fi provisioning and name reads were verified on a WiOn stake timer running firmware 1.7.1.
+
+**KAB** is the name the Homebridge ECO Plugs plugin uses for a different local network protocol found in some ECO Plugs firmware. The same model can ship with either protocol. For example, the plugin lists the ECO Plugs CT-065W outlet with both legacy and KAB firmware. Initial Wi-Fi setup for KAB firmware is unverified with WiOn Setup. [Homebridge tested devices](https://github.com/homebridge-plugins/homebridge-ecoplugs#tested-devices)
 
 ## Build from source
 
@@ -104,11 +106,11 @@ Read settings and send command 0x50013 with a 102-byte payload. Bytes 38–69 ho
 
 ### Why a timer can join Wi-Fi and still blink blue
 
-On a WiOn stake running firmware **1.7.1**, earlier releases got the timer onto the home network and saved its name, time zone, and ZIP. The blue light kept blinking, the ECO hotspot stayed visible, and a settings read still reported `ECO-Plugs` as the saved SSID. Sending duplicate copies of the first Wi-Fi write in 1.4.1 produced the same symptom.
+A timer can join your home Wi-Fi and respond to local commands while its blue light keeps blinking and its temporary ECO hotspot stays visible. On the WiOn stake timer running firmware 1.7.1, a settings read in this state still reported `ECO-Plugs` as the saved Wi-Fi name.
 
-The Android ECO Plugs app polls setup status during provisioning. When the timer replies **0**, Android sends the night-light setting, the astronomical table, and the full settings record a second time. **WiOn Setup 1.4.2 added that status-driven second pass.** The same stake went solid blue in a live macOS test. The Python CLI follows the same sequence and was verified with simulated replies. The timer firmware’s internal reason for leaving its hotspot active is unknown.
+The Android ECO Plugs app polls the timer’s setup status. When the timer replies with status `0`, the app sends the night-light setting, the sunrise and sunset table, and the full settings record again. WiOn Setup follows the same sequence. The timer’s light went solid blue in a live macOS test. The Python CLI follows the same sequence and was verified with simulated timer replies. The firmware’s internal reason for keeping the hotspot active is unknown.
 
-Use the saved SSID, the blue light, and the presence of the ECO hotspot to distinguish a LAN join from completed setup. On the CLI, compare `Settings-record SSID` from `info` with your home network name. A status **6** outside the setup window is inconclusive. The same stake still returned it after a successful Android setup with a solid blue light.
+To check setup on your timer, look for a solid blue light and confirm that the temporary ECO hotspot has disappeared. On the CLI, run `info` and compare `Settings-record SSID` with your home network name. A status `6` outside the setup window is inconclusive. The tested timer also returned it after successful setup.
 
 ### Time zone and daylight saving
 
