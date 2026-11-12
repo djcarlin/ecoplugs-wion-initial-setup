@@ -4,6 +4,8 @@ Set up legacy **ECO Plugs** and **WiOn** Wi-Fi timers and outlets with the WiOn 
 
 Use WiOn Setup for the initial Wi-Fi connection. After the device has joined, [homebridge-ecoplugs](https://github.com/homebridge-plugins/homebridge-ecoplugs#tested-devices) can discover and control supported devices on the same subnet.
 
+Some devices in the ECO Plugs family were sold as **Woods WiOn**, **WorkChoice**, or **DEWENWILS**. An `ECO-` device ID is a clue. Initial Wi-Fi setup targets legacy FtNetManager firmware and has been verified on a WiOn stake timer. See [Compatibility](#compatibility) for firmware details. [WorkChoice and Woods hardware comparison](https://blog.adafruit.com/?p=189576) · [DEWENWILS TM-050B manual](https://images.thdstatic.com/catalog/pdfImages/c3/c3a5ec2f-5e4f-4311-845e-2d0c39dd8a5d.pdf)
+
 ## Why this exists
 
 The original ECO Plugs iOS app could no longer onboard my WiOn timer after a factory reset. I built WiOn Setup to get the timer back onto my home Wi-Fi using a Mac, and added a Python CLI so people can do the same on Windows and Linux.
