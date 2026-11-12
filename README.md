@@ -8,6 +8,8 @@ Use WiOn Setup for the initial Wi-Fi connection. After the device has joined, [h
 
 The original ECO Plugs iOS app could no longer onboard my WiOn timer after a factory reset. I built WiOn Setup to get the timer back onto my home Wi-Fi using a Mac, and added a Python CLI so people can do the same on Windows and Linux.
 
+<img src="docs/wion-setup-macos.png" alt="WiOn Setup for macOS showing an example timer named Garden Lights and the initial Wi-Fi setup controls" width="560">
+
 ## Setup
 
 1. Put the timer in setup mode using the instructions for your model.
